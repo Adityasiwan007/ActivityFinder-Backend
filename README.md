@@ -24,13 +24,13 @@ After that you can use this code.. and Start the server by typing: npm start or 
 
 # APIS: 
 
- Open the brower and check the local host: http://localhost:8002/index.html 
+ Open the brower and check the local host: http://localhost:8004/index.html 
  
- To check the sever is live or not: http://localhost:8002/checkLive
+ To check the sever is live or not: http://localhost:8004/checkLive
 
 ## For login 
 
- Use this Api: http://localhost:8002/login 
+ Use this Api: http://localhost:8004/login 
 
  Along with JSON 
 

@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const router = require('express').Router();
 const app = express();
-const port = process.env.PORT || 8002;
+const port = process.env.PORT || 8004;
 app.use(express.json());
 app.use(cors())
 var mongoUrl= process.env.MONGODB_URI || "mongodb://localhost:27017/ActivityFinderDB";
