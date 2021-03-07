@@ -41,45 +41,15 @@ After that you can use this code.. and Start the server by typing: npm start or 
     "Password":"adi"
     
  } 
- 
-## For weatherdata to display in fronend: 
-
- Use this Api: http://localhost:8001/weatherdata 
-
-## For prediction of rainfall and temp: 
-
- Use this Api: http://localhost:8001/predictdata 
-
-## For getting the hisotry of weather data: 
-
- Use this Api: http://localhost:8001/historicalweather 
-
-## For uploading the weather history manually: 
-
- Use this Api: http://localhost:8001/uploadweather
-
-## For getting the upcoming week weather data: 
-
- Use this Api: http://localhost:8001/weeklydata
-
-## For sending the pervious weather data to flask: 
-
- Use this Api: http://localhost:8001/flaskdata
 
 # ------------------------------------------------------
 
-### For Heroku: 
-
-https://git.heroku.com/citymanagement.git
 
 ### For Git: 
 
-https://github.com/Adityasiwan007/City_Management_Bankend_Node.git
+https://github.com/Adityasiwan007/ActivityFinder-Backend.git
 
 ### For conneting Remote MongoDB Compass: 
 
-mongodb+srv://Aditya:<password>@cluster0.qqq3s.mongodb.net/test
+mongodb+srv://Aditya:<password>@cluster0.ffb6f.mongodb.net/test
 
-
-
-http://api.openweathermap.org/data/2.5/onecall/timemachine?lat=53.34399&lon=-6.26719&dt="+str(t)+"&appid=yourAPI

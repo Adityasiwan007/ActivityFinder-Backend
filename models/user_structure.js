@@ -1,10 +1,32 @@
 const mongoose = require('mongoose')
+const { Schema } = mongoose;
 
+const userSchema = Schema({
 
-let schema=mongoose.Schema({
-    UserName:String,
-    Password:String,
-    UserID:String,
-    Permission:String
+    UserName:{
+        type: Schema.Types.String,
+        required: true,
+      },
+    
+    Password:{
+        type: Schema.Types.String,
+        required: true,
+      },
+
+      UserID:{
+        type: Schema.Types.Number,
+        required: true,
+      },
+      
+    Movie:[{
+        type: Schema.Types.String,
+        required: false,
+    }],
+
+    Food:[{
+        type: Schema.Types.String,
+        required: false,
+    }],
+
 })
-module.exports = mongoose.model('user_structure',schema)
+module.exports = mongoose.model('user_structure',userSchema)

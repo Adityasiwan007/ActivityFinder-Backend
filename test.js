@@ -4,31 +4,20 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const router = require('express').Router();
 const app = express();
-const port = process.env.PORT || 8001;
+const port = process.env.PORT || 8002;
 app.use(express.json());
 app.use(cors())
-var mongoUrl= process.env.MONGODB_URI || "mongodb://localhost:27017/CityManagement";
+var mongoUrl= process.env.MONGODB_URI || "mongodb://localhost:27017/ActivityFinderDB";
 
 const userController=require('./controllers/userControllers')
-const dataController=require('./controllers/weatherDataControllers')
-const predictionController=require('./controllers/predictionController')
-const historyController=require('./controllers/historcalWeatherController')
-const weeklyController=require('./controllers/weeklyPredicitionControllers')
-const flaskController=require('./controllers/flaskWeatherController')
 
 
 app.get('/checkLive',async (req,res,next)=>{
-    let pro_time = "Yes, You are Live in heroku. Welcome to the City Management BackEnd Testing:)";
+    let pro_time = "Yes, You are Live in heroku. Welcome to the ActivityFinder BackEnd Testing:)";
     res.send(pro_time);
 });
 
 app.route('/login').post(userController.Login);
-app.route('/weatherdata').get(dataController.getData);
-app.route('/predictdata').get(predictionController.getPrediction);
-app.route('/historicalweather').get(historyController.getHistory);
-app.route('/uploadweather').get(historyController.enterHistory);
-app.route('/weeklydata').get(weeklyController.getWeekly);
-app.route('/flaskdata').get(flaskController.getHistory);
 
 
 app.use('/', express.static(__dirname + '/'));
@@ -47,6 +36,6 @@ db.on('error', (error) => {
   console.error(`Error while connecting to DB: ${error.message}`);
 });
 db.once('open', () => {
-  console.log('CityManagement DB connected successfully!');
+  console.log('ActivityFinderDB DB connected successfully!');
 });
 

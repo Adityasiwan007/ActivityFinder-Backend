@@ -1,7 +1,7 @@
 {
   "name": "aditya",
   "version": "1.0.0",
-  "description": "Simple code sample for the connection of node.js and web page and data sending and receiving",
+  "description": "Backend for ActivityFinder project",
   "main": "test.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
