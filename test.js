@@ -13,7 +13,7 @@ const userController=require('./controllers/userControllers')
 
 
 app.get('/checkLive',async (req,res,next)=>{
-    let pro_time = "Yes, You are Live in heroku. Welcome to the ActivityFinder BackEnd Testing:)";
+    let pro_time = "Yes, You are Live in heroku. Welcome to the ActivityFinder BackEnd Testing :)";
     res.send(pro_time);
 });
 
