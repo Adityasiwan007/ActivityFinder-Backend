@@ -42,6 +42,10 @@ After that you can use this code.. and Start the server by typing: npm start or 
     
  } 
 
+ ## For Weather data 
+
+ Use this Api: http://localhost:8004/weatherdata 
+
 # ------------------------------------------------------
 
 
@@ -53,3 +57,25 @@ https://github.com/Adityasiwan007/ActivityFinder-Backend.git
 
 mongodb+srv://Aditya:<password>@cluster0.ffb6f.mongodb.net/test
 
+
+
+
+
+
+# APIS: 
+
+ To check the sever is live or not: https://activityfinder1.herokuapp.com
+
+## For login 
+
+ Use this Api: https://activityfinder1.herokuapp.com/login 
+
+ Along with JSON 
+
+ {
+ 
+    "Name":"Aditya",
+    
+    "Password":"adi"
+    
+ } 
