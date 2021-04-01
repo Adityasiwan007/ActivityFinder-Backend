@@ -46,6 +46,12 @@ After that you can use this code.. and Start the server by typing: npm start or 
 
  Use this Api: http://localhost:8004/weatherdata 
 
+  ## For Movie data 
+
+ Use this Api: http://localhost:8004/moviedata?movie=Horror,Comedy     
+
+ You can put multiple arrays for the movie type like horror,comdey,Action,Adventure,Animation,Crime,Documentary,Drama,Family,Fantasy,History,Horror,Music,Mystery,Romance,Science Fiction,TV Movie,Thriller,War,Western
+
 # ------------------------------------------------------
 
 
