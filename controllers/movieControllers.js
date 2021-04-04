@@ -20,6 +20,21 @@ fetch(url, settings)
 
 exports.getData = async (req, res, next) => {
     let movie=req.query.movie
+    if(movie==null)
+    {
+        return res.json({
+            success:false,
+            message: "Please specify the movie subcategories like 'localhostxyz/moviedata?movie=action,drama' "
+        });
+    }
+    if(movie.toUpperCase().includes('ALL'))
+    {
+        return res.json({
+            success:true,
+            message: "Showing movies",
+            data:JSON2.results
+        });
+    }
     movie=movie.split(",");           // XYZ?movie=${array.join(",")}
     let id=[]
     moviesJson=[]
