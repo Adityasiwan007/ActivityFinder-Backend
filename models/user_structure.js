@@ -28,5 +28,10 @@ const userSchema = Schema({
         required: false,
     }],
 
+    Session:{
+      type: Schema.Types.String,
+      required: false,
+    },
+
 })
 module.exports = mongoose.model('user_structure',userSchema)

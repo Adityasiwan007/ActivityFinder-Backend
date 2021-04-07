@@ -25,6 +25,9 @@ exports.Login = async (req, res) => {
                                       "UserID":customer.UserID}}, encString, {
                                       expiresIn: "200 days" // expires in 48 hours
                                       });
+                customer.Session=token;
+                await customer.save()
+
                 return res.json({
                     success:true,
                     message: "Login Successfull.. Welcome",

@@ -12,6 +12,7 @@ var mongoUrl= process.env.MONGODB_URI || "mongodb://localhost:27017/ActivityFind
 const userController=require('./controllers/userControllers')
 const dataController=require('./controllers/weatherDataConrollers')
 const movieController=require('./controllers/movieControllers')
+const chatController=require('./controllers/chatControllers')
 
 app.get('/checkLive',async (req,res,next)=>{
     let pro_time = "Yes, You are Live in heroku. Welcome to the ActivityFinder BackEnd Testing :)";
@@ -21,6 +22,7 @@ app.get('/checkLive',async (req,res,next)=>{
 app.route('/login').post(userController.Login);
 app.route('/weatherdata').get(dataController.getData);
 app.route('/moviedata').get(movieController.getData);
+app.route('/chatbot').post(chatController.getChat);
 
 app.use('/', express.static(__dirname + '/'));
 app.listen(port);

@@ -5,36 +5,41 @@
             "UserName":"Claire",
             "Password":"clai",
             "UserID":"4",
-            "Movie":["horror","romantic"],
-            "Food":["Indonesian","Turkish"]
+            "Movie":["Action","Animation","Comedy"],
+            "Food":["Indonesian","Turkish"],
+            "Session":""
         },
         {
             "UserName":"Aditya",
             "Password":"adi",
             "UserID":"1",
-            "Movie":["funny","romantic","thriller"],
-            "Food":["Thai","Spanish"]
+            "Movie":["Crime","Documentary","Drama"],
+            "Food":["Thai","Spanish"],
+            "Session":""
         },
         {
             "UserName":"Joshua",
             "Password":"josh",
             "UserID":"2",
-            "Movie":["spy","documentary"],
-            "Food":["Moroccan","Japanese"]
+            "Movie":["Family","Fantasy","History"],
+            "Food":["Moroccan","Japanese"],
+            "Session":""
         },
         {
             "UserName":"Mikeldi",
             "Password":"mike",
             "UserID":"3",
-            "Movie":["horror","funny"],
-            "Food":["Indian","Italian"]
+            "Movie":["Horror","Music"],
+            "Food":["Indian","Italian"],
+            "Session":""
         },
         {
             "UserName":"Wenjing",
             "Password":"wenj",
             "UserID":"5",
-            "Movie":["thriller","spy","drama"],
-            "Food":["French","Chinese"]
+            "Movie":["Mystery","Romance","Thriller"],
+            "Food":["French","Chinese"],
+            "Session":""
         }
     ]
 }
