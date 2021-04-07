@@ -76,15 +76,24 @@ After that you can use this code.. and Start the server by typing: npm start or 
 # ----------------------------------------------------------------------------------------------------------------
 
 ## Script:
-User: Hi Bot,\n
+User: Hi Bot,
+
 Bot: Hi Aditya, How can I help you? 
+
 User: I am looking for movies.
+
 Bot: Hi Aditya, What kind of movies you want?
+
 User: Show me some action and horror movies.
+
 Bot: Showing 20 movies.  {* Array of movies with it's description *}
+
 User: Cool Thanks.
+
 Bot: You are always welcome Aditya.
+
 User: Bye.
+
 Bot: Bye Bye Aditya, See You soon.
 # ----------------------------------------------------------------------------------------------------------------
 
