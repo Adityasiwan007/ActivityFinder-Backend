@@ -76,7 +76,7 @@ After that you can use this code.. and Start the server by typing: npm start or 
 # ----------------------------------------------------------------------------------------------------------------
 
 ## Script:
-User: Hi Bot,
+User: Hi Bot,\n
 Bot: Hi Aditya, How can I help you? 
 User: I am looking for movies.
 Bot: Hi Aditya, What kind of movies you want?
