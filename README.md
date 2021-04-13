@@ -30,7 +30,7 @@ After that you can use this code.. and Start the server by typing: npm start or 
 
 ## For login 
 
- Use this Api: http://localhost:8004/login 
+ Use this Api Post Request: http://localhost:8004/login 
 
  Along with JSON 
 
@@ -61,17 +61,18 @@ After that you can use this code.. and Start the server by typing: npm start or 
 
  ## For Chatting in chatbot
 
- Use this Api: http://localhost:8004/moviedata?chatbot
+ Use this Api Post Request: http://localhost:8004/moviedata?chatbot
 
  Along with JSON 
 
- {
- 
-    "jwt":"eiwufgewyugewfquwryebfqerouybfuyrebfrew",   //You will get the JWT Token every time while doing login and use that Token every time while chatting.
-    
-    "text":"Hi, I am looking for movies"    // Send the text from user to backend. 
-    
- } 
+{
+  "jwt": "eiwufgewyugewfquwryebfqerouybfuyrebfrew",   //You will get the JWT Token every time while doing login and use that Token every time while chatting.
+
+  "message":{
+  "text":"Hi, I am looking for movies",    // Send the text from user to backend. 
+  "bot":false
+  }
+}
 
 # ----------------------------------------------------------------------------------------------------------------
 

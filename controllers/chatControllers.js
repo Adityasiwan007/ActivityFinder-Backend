@@ -2,10 +2,13 @@ const User = require('../models/user_structure');
 let moviesController = require('../controllers/movieControllers')
 const fetch = require('node-fetch');
 let url = "https://api.themoviedb.org/3/genre/movie/list?api_key=88293050a56889ca23c23db2288ce8d5";
+let mike="https://mikeldinew.herokuapp.com/chatbot?";
+let claire="https://activityfinder-re.herokuapp.com/similarMovie?"
 
 let settings = { method: "Get" };
-let JSON
-
+let settings1 = { method: "Post" };
+let JSON,JSON1,JSON2
+let state_count=0;
 fetch(url, settings)
     .then(res => res.json())
     .then((json) => {
@@ -14,11 +17,11 @@ fetch(url, settings)
 
 exports.getChat = async (req, res) => {
     const {
-        jwt, text,
+        jwt, message,
     } = req.body;
     // let pro = `Retrun Name: `+Name+' ID: '+ID;
     // res.send(pro);
-
+    let text=message.text;
 
     User.findOne({ 'Session': jwt },async function (err, customer) {
         if (err) {
@@ -41,7 +44,6 @@ exports.getChat = async (req, res) => {
             
             if(gens.length>0){
                 return res.json(await moviesController.getDataLocal(gens.join(","))) 
-                
             }
 
 
@@ -80,10 +82,36 @@ exports.getChat = async (req, res) => {
 
             }
 
+
+            
+
+    // try {
+    //         let mike1=mike+"text="+text+"&state="+state_count;
+    //         await fetch(mike1, settings)
+    //             .then(res => res.json())
+    //             .then((json) => {
+    //                 JSON1=json
+    //             });
+
+    //             state_count=(state_count>=2)?0:JSON1.state;
+                
+    //         let claire1=claire+"title="+"Monsters, Inc. (2001)";
+    //         await fetch(claire1, settings1)
+    //             .then(res => res.json())
+    //             .then((json) => {
+    //                 JSON1=json
+    //             });
+
+    //     } 
+    //     catch (err) {
+    //         next(err);             
+    //     }
+
                 return res.json({
                     success:true,
                     message: `Hi ${customer.UserName}, I am not sure what the F.. are saying?`,
                     intent:"NONE"
+                    // result:JSON1
                 })
             
         }
