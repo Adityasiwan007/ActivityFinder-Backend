@@ -17,11 +17,8 @@ fetch(url, settings)
 
 exports.getChat = async (req, res) => {
     const {
-        jwt, message,
+        jwt, text,
     } = req.body;
-    // let pro = `Retrun Name: `+Name+' ID: '+ID;
-    // res.send(pro);
-    let text=message.text;
 
     User.findOne({ 'Session': jwt },async function (err, customer) {
         if (err) {
