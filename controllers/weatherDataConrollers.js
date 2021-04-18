@@ -13,8 +13,8 @@ fetch(url, settings)
 exports.getData = async (req, res) => {
     return res.json({
         success:true,
-        message: "Showing Current Weather condition for Activity Finder",
-        data:JSON
+        weather: JSON.weather[0],
+        highlights:JSON.main
     });
   };
 

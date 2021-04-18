@@ -5,7 +5,7 @@
             "UserName":"Claire",
             "Password":"clai",
             "UserID":"4",
-            "Movie":["Action","Animation","Comedy"],
+            "Movie":["Comedy"],
             "Food":["Indonesian","Turkish"],
             "Session":""
         },
@@ -13,7 +13,7 @@
             "UserName":"Aditya",
             "Password":"adi",
             "UserID":"1",
-            "Movie":["Crime","Documentary","Drama"],
+            "Movie":["Drama"],
             "Food":["Thai","Spanish"],
             "Session":""
         },
@@ -21,7 +21,7 @@
             "UserName":"Joshua",
             "Password":"josh",
             "UserID":"2",
-            "Movie":["Family","Fantasy","History"],
+            "Movie":["History"],
             "Food":["Moroccan","Japanese"],
             "Session":""
         },
@@ -29,7 +29,7 @@
             "UserName":"Mikeldi",
             "Password":"mike",
             "UserID":"3",
-            "Movie":["Horror","Music"],
+            "Movie":["Music"],
             "Food":["Indian","Italian"],
             "Session":""
         },
@@ -37,7 +37,7 @@
             "UserName":"Wenjing",
             "Password":"wenj",
             "UserID":"5",
-            "Movie":["Mystery","Romance","Thriller"],
+            "Movie":["Thriller"],
             "Food":["French","Chinese"],
             "Session":""
         }

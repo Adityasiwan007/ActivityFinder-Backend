@@ -21,7 +21,7 @@ app.get('/checkLive',async (req,res,next)=>{
 
 app.route('/login').post(userController.Login);
 app.route('/weatherdata').get(dataController.getData);
-app.route('/moviedata').get(movieController.getData);
+app.route('/moviedata').post(movieController.getData);
 app.route('/chatbot').post(chatController.getChat);
 
 app.use('/', express.static(__dirname + '/'));

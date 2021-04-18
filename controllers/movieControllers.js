@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const User = require('../models/user_structure');
 
 let url = "https://api.themoviedb.org/3/genre/movie/list?api_key=88293050a56889ca23c23db2288ce8d5";
 let url2 = "https://api.themoviedb.org/3/discover/movie?api_key=88293050a56889ca23c23db2288ce8d5&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&genre=Action";
@@ -116,48 +117,49 @@ fetch(url, settings)
 
     exports.getData = async (req, res, next) => {
     //let Final_Json=JSON2.results.concat(JSON3.results,JSON4.results,JSON5.results,JSON6.results,JSON7.results,JSON8.results,JSON9.results,JSON10.results,JSON11.results,JSON12.results,JSON13.results,JSON14.results)
-    let movie=req.query.movie
-    if(movie==null)
-    {
-        return res.json({
-            success:false,
-            message: "Please specify the movie subcategories like 'localhostxyz/moviedata?movie=action,drama' "
-        });
-    }
-    if(movie.toUpperCase().includes('ALL'))
-    {
-        return res.json({
-            success:true,
-            message: `Showing ${Final_Json.length} movies`,
-            data:Final_Json
-        });
-    }
-    movie=movie.split(",");           // XYZ?movie=${array.join(",")}
-    let id=[]
-    moviesJson=[]
-    let count=0;
-    movie.forEach(element => {
-        JSON.genres.forEach(x=>{
-            if(x.name.toUpperCase()==element.toUpperCase())
-            {
-                let temp=Final_Json.filter((movies)=> movies.genre_ids.includes(x.id))
-                moviesJson.push(temp)
-                count+=temp.length
-            }
-        })
-    });
+    const {
+        jwt
+    } = req.body;
 
-    if(count==0)
-    {
-        return res.json({
-            success:false,
-            message: "Not a proper name",
-        });  
-    }
-    return res.json({
-        success:true,
-        message: `Showing ${count} movies`,
-        data:moviesJson
+
+    User.findOne({ 'Session': jwt },async function (err, customer) {
+        if (err) {
+            console.log('error', 'User Creation failed : ', err.toString());
+            res.send({ success: false, message: 'Something bad happend, please try again' });
+            return;
+        }
+        else if (customer == null) {
+            return res.json({success:false,message:'Please Loging again. Unable to identify you',intent:"NONE"}) 
+        } 
+        else {
+            let movie=customer.Movie;           // XYZ?movie=${array.join(",")}
+            let id=[]
+            moviesJson=[]
+            let count=0;
+            movie.forEach(element => {
+                JSON.genres.forEach(x=>{
+                    if(x.name.toUpperCase()==element.toUpperCase())
+                    {
+                        let temp=Final_Json.filter((movies)=> movies.genre_ids.includes(x.id))
+                        moviesJson.push(temp)
+                        count+=temp.length
+                    }
+                })
+            });
+        
+            if(count==0)
+            {
+                return res.json({
+                    success:false,
+                    message: "Not a proper name",
+                });  
+            }
+            return res.json({
+                success:true,
+                message: `Showing ${count} movies for `+customer.UserName,
+                data:moviesJson.flat()
+            });
+        }
     });
   };
   
