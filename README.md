@@ -74,7 +74,7 @@ You will get the best restaurant based on user's last searched food.
 
  ## For Chatting in chatbot
 
- Use this Api Post Request: http://localhost:8004/moviedata?chatbot
+ Use this Api Post Request: http://localhost:8004/chatbot
 
  Along with JSON 
 
