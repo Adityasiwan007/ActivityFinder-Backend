@@ -13,6 +13,8 @@ let movie="";
 let final_movies=[]
 let genrs=[];
 let response_text=""
+let response_text_rest=""
+let restaurant_flag="false";
 fetch(url, settings)
     .then(res => res.json())
     .then((json) => {
@@ -48,37 +50,87 @@ exports.getChat = async (req, res) => {
             // }
 
 
-            // if(text.toUpperCase().includes("MOVIE")){
-            //     return res.json({
-            //         success:true,
-            //         message: `Hi ${customer.UserName}, What kind of movies you want?`,
-            //         intent: "Movie Query"
-            //     }) 
+            
+            if(restaurant_flag=="true")
+            {
+                response_text_rest=""
+                restaurant_flag="false"
 
-            // }
+                try {
+                        let claire1="https://activityfinder-re.herokuapp.com/restaurant?text="+text;
+                        await fetch(claire1, settings1)
+                        .then(res => res.json())
+                        .then((json) => {
+                            JSON2=json
+                        });
+                    } 
 
-            // if(text.toUpperCase().includes("HI") || text.toUpperCase().includes("HELLO") || text.toUpperCase().includes("HEY") || text.toUpperCase().includes("MY NAME") )
-            // {
-            //     return res.json({
-            //         success:true,
-            //         message: `Hi ${customer.UserName}, How can I help you?`,
-            //         intent:"Greet"
-            //     }) 
-            // }
+            catch (err) {
+                           
+            }
+            customer.Food=JSON2.keyword;
+            await customer.save()
+            var result = JSON2.Rating;
+            response_text_rest="These are some of the best restaurants with rating I would recommend for "+JSON2.keyword+" : "
+            for(var key in result){ 
+                response_text_rest=response_text_rest+key+ " with rating "+(result[key]*10).toFixed(2)+", ";
+            }
+            response_text_rest=response_text_rest.substring(0, response_text_rest.length - 2)+".";
+                return res.json({
+                    success:true,
+                    message: response_text_rest,
+                    intent:"food Query"
+                }) 
+
+
+            }
+
+            if(text.toUpperCase().includes("HI") ||text.toUpperCase().includes("BORED")|| text.toUpperCase().includes("HELLO") || text.toUpperCase().includes("HEY") || text.toUpperCase().includes("MY NAME") )
+            {
+                if(text.toUpperCase().includes("RESTAURANT") || text.toUpperCase().includes("FOOD") || text.toUpperCase().includes("HOTEL") || text.toUpperCase().includes("HUNGRY") || text.toUpperCase().includes("STARVING")){
+                    restaurant_flag="true";
+                    return res.json({  
+                        success:true,
+                        message: `Hi ${customer.UserName}, What kind of food you want?`,
+                        intent: "Restaurant Query"
+                    }) 
+                }
+                else if(text.toUpperCase().includes("MOVIE")){
+
+                }
+                else{
+                    return res.json({
+                        success:true,
+                        message: `Hi ${customer.UserName}, What would you like to do today? Movie or Restaurant!!!!`,
+                        intent:"Greet"
+                    }) 
+                }
+                
+            }
 
             if(text.toUpperCase().includes("BYE") || text.toUpperCase().includes("SEE YOU") || text.toUpperCase().includes("GOOD BYE") || text.toUpperCase().includes("LATER") )
             {
                 return res.json({
                     success:true,
                     message: `Bye Bye ${customer.UserName}, See You soon.`,
-                    intent:"Greet"
+                    intent:"BYE Query"
                 }) 
             }
             if(text.toUpperCase().includes("THANK")){
                 return res.json({
                     success:true,
                     message: `You are always welcome ${customer.UserName}.`,
-                    intent: "Movie Query"
+                    intent: "Thanks Query"
+                }) 
+
+            }
+
+            if(text.toUpperCase().includes("STARVING")||text.toUpperCase().includes("HUNGRY")||text.toUpperCase().includes("RESTAURANT") || text.toUpperCase().includes("FOOD") || text.toUpperCase().includes("HOTEL")){
+                restaurant_flag="true";
+                return res.json({
+                    success:true,
+                    message: `Hi ${customer.UserName}, What kind of food you want?`,
+                    intent: "Restaurant Query"
                 }) 
 
             }
@@ -115,7 +167,7 @@ exports.getChat = async (req, res) => {
                     JSON1=json
                 });
                 if(genrs.length!=0){
-                    customer.Movie.splice(0, 1, genrs[0]);;
+                    customer.Movie.splice(0, 1, genrs[0]);
                     await customer.save()
 
                     JSON1.content.content.forEach(element => {

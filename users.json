@@ -6,7 +6,7 @@
             "Password":"clai",
             "UserID":"4",
             "Movie":["Comedy"],
-            "Food":["Indonesian","Turkish"],
+            "Food":"sushi",
             "Session":""
         },
         {
@@ -14,7 +14,7 @@
             "Password":"adi",
             "UserID":"1",
             "Movie":["Drama"],
-            "Food":["Thai","Spanish"],
+            "Food":"sandwich",
             "Session":""
         },
         {
@@ -22,7 +22,7 @@
             "Password":"josh",
             "UserID":"2",
             "Movie":["History"],
-            "Food":["Moroccan","Japanese"],
+            "Food":"burger",
             "Session":""
         },
         {
@@ -30,7 +30,7 @@
             "Password":"mike",
             "UserID":"3",
             "Movie":["Music"],
-            "Food":["Indian","Italian"],
+            "Food":"pizza",
             "Session":""
         },
         {
@@ -38,7 +38,7 @@
             "Password":"wenj",
             "UserID":"5",
             "Movie":["Thriller"],
-            "Food":["French","Chinese"],
+            "Food":"pasta",
             "Session":""
         }
     ]

@@ -23,10 +23,10 @@ const userSchema = Schema({
         required: false,
     }],
 
-    Food:[{
+    Food:{
         type: Schema.Types.String,
         required: false,
-    }],
+    },
 
     Session:{
       type: Schema.Types.String,

@@ -44,19 +44,32 @@ After that you can use this code.. and Start the server by typing: npm start or 
 
  ## For Weather data 
 
- Use this Api: http://localhost:8004/weatherdata 
+ Use this GET Api: http://localhost:8004/weatherdata 
 
 
  ## For Movie data 
 
- Use this Api: http://localhost:8004/moviedata?movie=Horror,Comedy     
+ Use this POST Api: http://localhost:8004/moviedata   
+
+Along with JSON 
+
+{
+  "jwt": "eiwufgewyugewfquwryebfqerouybfuyrebfrew",   //You will get the JWT Token every time while doing login and use that Token every time while chatting.
+}
 
  You can put multiple arrays for the movie type like horror,comdey,Action,Adventure,Animation,Crime,Documentary,Drama,Family,Fantasy,History,Horror,Music,Mystery,Romance,Science Fiction,TV Movie,Thriller,War,Western
 
+  ## For Restaurant data 
 
- ## For All Movies data 
+ Use this POST Api: http://localhost:8004/restaurantdata   
 
- Use this Api: http://localhost:8004/moviedata?movie=all  
+Along with JSON 
+
+{
+  "jwt": "eiwufgewyugewfquwryebfqerouybfuyrebfrew",   //You will get the JWT Token every time while doing login and use that Token every time while chatting.
+}
+
+You will get the best restaurant based on user's last searched food.
 
 
  ## For Chatting in chatbot
@@ -68,26 +81,25 @@ After that you can use this code.. and Start the server by typing: npm start or 
 {
   "jwt": "eiwufgewyugewfquwryebfqerouybfuyrebfrew",   //You will get the JWT Token every time while doing login and use that Token every time while chatting.
 
-  "message":{
-  "text":"Hi, I am looking for movies",    // Send the text from user to backend. 
-  "bot":false
-  }
+  "text":"Hi, How are you?"
 }
 
 # ----------------------------------------------------------------------------------------------------------------
 
-## Script:
+## Script  for Restaurant Happy path:
+
+
 User: Hi Bot,
 
-Bot: Hi Aditya, How can I help you? 
+Bot: Hi Aditya, What would you like to do today? Movie or Restaurant!!!! 
 
-User: I am looking for movies.
+User: I am hungry.
 
-Bot: Hi Aditya, What kind of movies you want?
+Bot: Hi Aditya, What kind of food you want?
 
-User: Show me some action and horror movies.
+User: I want sushi.
 
-Bot: Showing 20 movies.  {* Array of movies with it's description *}
+Bot: These are some of the best restaurants with rating I would recommend for sushi : Blue Ginger Asian Fusion Bistro with rating 4.35, Mr Sushi with rating 5.95, Ronin Sushi with rating 5.29, Sushi.com with rating 5.95, Yoshi's Japanese Restaurant with rating 4.64.
 
 User: Cool Thanks.
 
@@ -96,6 +108,32 @@ Bot: You are always welcome Aditya.
 User: Bye.
 
 Bot: Bye Bye Aditya, See You soon.
+
+# ----------------------------------------------------------------------------------------------------------------
+
+## Script for Movie Happy path:
+
+
+User: Hi Bot,
+
+Bot: Hi Aditya, What would you like to do today? Movie or Restaurant!!!! 
+
+User: Suggest me some movies.
+
+Bot: Give me the title of a movie the suggestion should be similar to, if you wish.
+
+User: Toy Story.
+
+Bot: Are there genres that you would be more interested in?\nWe have action, horror, drama, romance, comedy, thriller, documentary, adventure, fantasy, history, sci-fi.
+
+User: comedy.
+
+Bot: There are the movies you might like: Toy Story 2 (1999),Bug's Life, A (1998),Monsters, Inc. (2001),Foul Hunting (1947),The Fox and the Hound 2 (2006),Finding Nemo (2003),Lilo & Stitch 2: Stitch has a Glitch (2005),Big Hero 6 (2014),Ice Age (2002),Minions (2015),Brother Bear 2 (2006).
+
+User: Cool thanks.
+
+Bot: You are always welcome Aditya.
+
 # ----------------------------------------------------------------------------------------------------------------
 
 
