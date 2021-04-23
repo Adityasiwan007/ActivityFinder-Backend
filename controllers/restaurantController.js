@@ -37,7 +37,6 @@ exports.getData = async (req, res) => {
                 return res.json({success:false,message:'Problem with 2nd level of connection',intent:"NONE"})
                         
             }
-            return JSON2;
             
         }
     });

@@ -16,6 +16,7 @@
     "mongoose": "^5.11.15",
     "node-fetch": "^2.6.1",
     "node-schedule": "^2.0.0",
+    "promise": "^8.1.0",
     "request": "^2.88.2"
   },
   "devDependencies": {}

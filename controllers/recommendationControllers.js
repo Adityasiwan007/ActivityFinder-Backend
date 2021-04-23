@@ -1,7 +1,11 @@
-const fetch = require('node-fetch');
 const User = require('../models/user_structure');
+let moviesController = require('../controllers/movieControllers')
+let locationData = require('../location')
 var promise = require("promise");
-
+const fs = require('fs');
+const fetch = require('node-fetch');
+let locData,newLoc
+let urlWeather = "http://api.openweathermap.org/data/2.5/weather?q=Dublin,IE&appid=ef272ce5c18fd04114b31684fe8f50e1";
 let url = "https://api.themoviedb.org/3/genre/movie/list?api_key=88293050a56889ca23c23db2288ce8d5";
 let url2 = "https://api.themoviedb.org/3/discover/movie?api_key=88293050a56889ca23c23db2288ce8d5&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&genre=Action";
 let url3 = "https://api.themoviedb.org/3/discover/movie?api_key=88293050a56889ca23c23db2288ce8d5&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=2&genre=Action";
@@ -21,13 +25,13 @@ let url14 = "https://api.themoviedb.org/3/discover/movie?api_key=88293050a56889c
 
 
 let settings = { method: "Get" };
-let JSON,JSON2,JSON3,JSON4,JSON5,JSON6,JSON7,JSON8,JSON9,JSON10,JSON11,JSON12,JSON13,JSON14
+let JSONX,JSON2,JSON3,JSON4,JSON5,JSON6,JSON7,JSON8,JSON9,JSON10,JSON11,JSON12,JSON13,JSON14,JSONWeather
 let Final_Json=[]
 
 fetch(url, settings)
     .then(res => res.json())
     .then((json) => {
-        JSON=json
+        JSONX=json
     });
 
     fetch(url2, settings)
@@ -114,98 +118,74 @@ fetch(url, settings)
         Final_Json=Final_Json.concat(JSON14.results)
         
     });
+    fs.readFile('location.json', (err, data) => {
+        if (err) throw err;
+        locData = JSON.parse(data);
+    });
 
+    fetch(urlWeather, settings)
+    .then(res => res.json())
+    .then((json) => {
+        JSONWeather=json
+    });
 
-    exports.getData = async (req, res, next) => {
-    //let Final_Json=JSON2.results.concat(JSON3.results,JSON4.results,JSON5.results,JSON6.results,JSON7.results,JSON8.results,JSON9.results,JSON10.results,JSON11.results,JSON12.results,JSON13.results,JSON14.results)
+exports.getData = async (req, res) => {
     const {
         jwt
     } = req.body;
 
-
     User.findOne({ 'Session': jwt },async function (err, customer) {
         if (err) {
             console.log('error', 'User Creation failed : ', err.toString());
-            return res.send({ success: false, message: 'Something bad happend, please try again' })
+            return res.send({ success: false, message: 'Something bad happend, please try again' });
         }
         else if (customer == null) {
             return res.json({success:false,message:'Please Loging again. Unable to identify you',intent:"NONE"}) 
         } 
         else {
-            let movie=customer.Movie;           // XYZ?movie=${array.join(",")}
-            let id=[]
-            moviesJson=[]
-            let count=0;
-            movie.forEach(element => {
-                JSON.genres.forEach(x=>{
-                    if(x.name.toUpperCase()==element.toUpperCase())
-                    {
-                        let temp=Final_Json.filter((movies)=> movies.genre_ids.includes(x.id))
-                        moviesJson.push(temp)
-                        count+=temp.length
-                    }
-                })
-            });
-        
-            if(count==0)
-            {
+
+            if(JSONWeather.weather[0].id<700){
+                let movie=customer.Movie;           // XYZ?movie=${array.join(",")}
+                let id=[]
+                moviesJson=[]
+                let count=0;
+                movie.forEach(element => {
+                    JSONX.genres.forEach(x=>{
+                        if(x.name.toUpperCase()==element.toUpperCase())
+                        {
+                            let temp=Final_Json.filter((movies)=> movies.genre_ids.includes(x.id))
+                            moviesJson.push(temp)
+                            count+=temp.length
+                        }
+                    })
+                });
                 return res.json({
-                    success:false,
-                    message: "Not a proper name",
-                });  
+                    status:"Movie",
+                    message: `Looks like weather is not good outside. I would suggest you to be at home and watch some movies. Here are ${count} movies.`,
+                    data:moviesJson
+                });
             }
-            return res.json({
-                success:true,
-                message: `Showing ${count} movies for `+customer.UserName,
-                data:moviesJson.flat()
-            });
+            else if(JSONWeather.weather[0].id>=700 && JSONWeather.weather[0].id<=800){
+                newLoc=[]
+                newLoc=locData.filter((data)=> Math.abs((Math.abs(data.Longitude) -Math.abs(customer.Location.lng))*1000)<50 && Math.abs((Math.abs(data.Latitude) -Math.abs(customer.Location.lat))*1000)<50)
+                return res.json({
+                    status:"Places",
+                    message: `Weather is good outside. It's sunny. There are ${newLoc.length} places near your location. You can visit any of them`,
+                    data:newLoc
+                });
+            }
+            else if(JSONWeather.weather[0].id>800){
+                newLoc=[]
+                newLoc=locData.filter((data)=> Math.abs((Math.abs(data.Longitude) -Math.abs(customer.Location.lng))*1000)<50 && Math.abs((Math.abs(data.Latitude) -Math.abs(customer.Location.lat))*1000)<50)
+                return res.json({
+                    status:"Places",
+                    message: `Weather is good outside. It's cloudy and sunny both together. There are ${newLoc.length} places near your location. You can visit any of them`,
+                    data:newLoc
+                });
+            }
+            
         }
     });
   };
+
   
-exports.getDataLocal = async (jwt) => {
-     
-    User.findOne({ 'Session': jwt },async function (err, customer) {
-        if (err) {
-            console.log('error', 'User Creation failed : ', err.toString());
-            var json={ success: false, message: 'Something bad happend, please try again' };
-            return json;
-        }
-        else if (customer == null) {
-            var json={success:false,message:'Please Loging again. Unable to identify you',intent:"NONE"}
-            return json;
-        } 
-        else {
-            let movie=customer.Movie;           // XYZ?movie=${array.join(",")}
-            let id=[]
-            moviesJson=[]
-            let count=0;
-            movie.forEach(element => {
-                JSON.genres.forEach(x=>{
-                    if(x.name.toUpperCase()==element.toUpperCase())
-                    {
-                        let temp=Final_Json.filter((movies)=> movies.genre_ids.includes(x.id))
-                        moviesJson.push(temp)
-                        count+=temp.length
-                    }
-                })
-            });
-        
-            if(count==0)
-            {
-                var json={
-                    success:false,
-                    message: "Not a proper name",
-                };  
-                return json;
-            }
-            var json={
-                success:true,
-                message: `Showing ${count} movies for `+customer.UserName,
-                data:moviesJson.flat()
-            };
-            module.exports.json=json
-        }
-    });
-  };
- 

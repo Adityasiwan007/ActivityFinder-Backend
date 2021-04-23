@@ -33,5 +33,17 @@ const userSchema = Schema({
       required: false,
     },
 
+    Location:{
+      lng: {
+        type: Schema.Types.Number,
+        required: true,
+      },
+      lat: {
+        type: Schema.Types.Number,
+        required: true,
+      },
+  }
+
+
 })
 module.exports = mongoose.model('user_structure',userSchema)

@@ -14,6 +14,8 @@ const dataController=require('./controllers/weatherDataConrollers')
 const movieController=require('./controllers/movieControllers')
 const restaurantController=require('./controllers/restaurantController')
 const chatController=require('./controllers/chatControllers')
+const locationController=require('./controllers/locationControllers')
+const recommendationController=require('./controllers/recommendationControllers')
 
 app.get('/checkLive',async (req,res,next)=>{
     let pro_time = "Yes, You are Live in heroku. Welcome to the ActivityFinder BackEnd Testing :)";
@@ -24,6 +26,8 @@ app.route('/login').post(userController.Login);
 app.route('/weatherdata').get(dataController.getData);
 app.route('/moviedata').post(movieController.getData);
 app.route('/restaurantdata').post(restaurantController.getData);
+app.route('/locationdata').post(locationController.getData);
+app.route('/recommendation').post(recommendationController.getData);
 app.route('/chatbot').post(chatController.getChat);
 
 app.use('/', express.static(__dirname + '/'));

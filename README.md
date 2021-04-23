@@ -84,6 +84,30 @@ You will get the best restaurant based on user's last searched food.
   "text":"Hi, How are you?"
 }
 
+## For Location data 
+
+Use this POST Api: http://localhost:8004/locationdata   
+
+Along with JSON 
+
+{
+  "jwt": "eiwufgewyugewfquwryebfqerouybfuyrebfrew",   //You will get the JWT Token every time while doing login and use that Token every time while chatting.
+}
+
+You will get the nearest visiting places in the dublin based on user's loaction (Longitude, Latitude)
+
+ 
+## For Final Recommnedation 
+
+Use this POST Api: http://localhost:8004/recommendation
+
+Along with JSON 
+
+{
+  "jwt": "eiwufgewyugewfquwryebfqerouybfuyrebfrew",   //You will get the JWT Token every time while doing login and use that Token every time while chatting.
+}
+
+Bot will give the response based on current weather, bot will suggest multiple movies of user's choice if its raining outside. Else bot will give nearest visiting (Attraction) places if current weather is sunny. 
 # ----------------------------------------------------------------------------------------------------------------
 
 ## Script  for Restaurant Happy path:

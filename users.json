@@ -7,7 +7,11 @@
             "UserID":"4",
             "Movie":["Comedy"],
             "Food":"sushi",
-            "Session":""
+            "Session":"",
+            "Location":{
+                "lng": -6.255202,
+                "lat": 53.347272
+            }
         },
         {
             "UserName":"Aditya",
@@ -15,7 +19,11 @@
             "UserID":"1",
             "Movie":["Drama"],
             "Food":"sandwich",
-            "Session":""
+            "Session":"",
+            "Location":{
+                "lng": -6.137723,
+                "lat": 53.390085
+            }
         },
         {
             "UserName":"Joshua",
@@ -23,7 +31,11 @@
             "UserID":"2",
             "Movie":["History"],
             "Food":"burger",
-            "Session":""
+            "Session":"",
+            "Location":{
+                "lng": -6.244832,
+                "lat": 53.407485
+            }
         },
         {
             "UserName":"Mikeldi",
@@ -31,7 +43,11 @@
             "UserID":"3",
             "Movie":["Music"],
             "Food":"pizza",
-            "Session":""
+            "Session":"",
+            "Location":{
+                "lng": -6.379453,
+                "lat": 53.349527
+            }
         },
         {
             "UserName":"Wenjing",
@@ -39,7 +55,11 @@
             "UserID":"5",
             "Movie":["Thriller"],
             "Food":"pasta",
-            "Session":""
+            "Session":"",
+            "Location":{
+                "lng": -6.243926,
+                "lat": 53.276711
+            }
         }
     ]
 }

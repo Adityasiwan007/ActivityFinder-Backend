@@ -68,10 +68,14 @@ exports.getChat = async (req, res) => {
             catch (err) {
                            
             }
+
+            
             customer.Food=JSON2.keyword;
             await customer.save()
+
             var result = JSON2.Rating;
             response_text_rest="These are some of the best restaurants with rating I would recommend for "+JSON2.keyword+" : "
+
             for(var key in result){ 
                 response_text_rest=response_text_rest+key+ " with rating "+(result[key]*10).toFixed(2)+", ";
             }
