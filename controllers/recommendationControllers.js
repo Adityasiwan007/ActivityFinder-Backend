@@ -170,7 +170,7 @@ exports.getData = async (req, res) => {
                 newLoc=locData.filter((data)=> Math.abs((Math.abs(data.Longitude) -Math.abs(customer.Location.lng))*1000)<50 && Math.abs((Math.abs(data.Latitude) -Math.abs(customer.Location.lat))*1000)<50)
                 return res.json({
                     success:true,
-                    message: `Weather is good outside. It's sunny. There are ${newLoc.length} places near your location. You can visit any of them`,
+                    message: `Weather is good outside. It's sunny. There are ${newLoc.length} places near your location. You can visit any of them.`,
                     data:newLoc
                 });
             }
@@ -179,7 +179,7 @@ exports.getData = async (req, res) => {
                 newLoc=locData.filter((data)=> Math.abs((Math.abs(data.Longitude) -Math.abs(customer.Location.lng))*1000)<50 && Math.abs((Math.abs(data.Latitude) -Math.abs(customer.Location.lat))*1000)<50)
                 return res.json({
                     success:true,
-                    message: `Weather is good outside. It's cloudy and sunny both together. There are ${newLoc.length} places near your location. You can visit any of them`,
+                    message: `Weather is good outside. It's cloudy and sunny both together. There are ${newLoc.length} places near your location. You can visit any of them.`,
                     data:newLoc
                 });
             }
